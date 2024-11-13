@@ -30,6 +30,8 @@ function AddAppliancesForm() {
     );
   };
 
+
+  
   return (
     <div className="w-[450px] mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-semibold text-black mb-4">Add Appliance</h2>
