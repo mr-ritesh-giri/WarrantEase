@@ -14,6 +14,7 @@ import {
   ViewAppLiancesPage,
 } from "./pages/index";
 import Outlet from "./Layout";
+import { WarrantProvider } from "./context/ContextProvider";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <WarrantProvider>
+      <RouterProvider router={router} />
+    </WarrantProvider>
   </StrictMode>
 );

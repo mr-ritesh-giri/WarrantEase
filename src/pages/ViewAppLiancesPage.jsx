@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { ApplianceData } from "../api/ApplianceData";
+import React, { useState, useEffect, useId } from "react";
 import ViewAppliances from "../components/ViewAppliances";
+import { useWarrant } from "../context/ContextProvider";
 
 function ViewAppLiancesPage() {
   const [appliance, setAppliance] = useState(null);
-
-  console.log("Appliance Data", appliance);
+  const { data, handleDelete } = useWarrant();
+  const id = useId();
 
   useEffect(() => {
-    ApplianceData().then((data) => {
-      if (data && data.length) {
-        setAppliance(data);
-      } else {
-        setAppliance([]);
-      }
-    });
-  }, []);
+    if (data) {
+      setAppliance(data);
+    }
+  }, [data]);
 
   return (
     <div className="flex justify-center items-center min-h-[90vh] bg-gray-200">
@@ -23,17 +19,18 @@ function ViewAppLiancesPage() {
         {appliance && appliance.length > 0 ? (
           appliance.map((applianceData, index) => (
             <ViewAppliances
-              key={index}
-              name={applianceData.type} 
+              name={applianceData.type}
               model={applianceData.model}
               make={applianceData.make}
               purchaseDate={applianceData.purchaseDate}
               warrantyPeriod={applianceData.warrantyPeriod}
-              customerCareNumber={applianceData.customerCareNumber} 
+              customerCareNumber={applianceData.customerCareNumber}
+              onDelete={handleDelete}
+              id={applianceData.id}
             />
           ))
         ) : (
-          <p>No data found</p>
+          <p className="text-gray-700 text-3xl font-semibold">No data found</p>
         )}
       </div>
     </div>

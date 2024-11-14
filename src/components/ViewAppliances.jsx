@@ -1,9 +1,26 @@
 import React from "react";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 function ViewAppliances(props) {
   return (
-    <div className="w-full max-w-xs mx-auto p-3 bg-white text-gray-800 shadow-md rounded-lg">
-      <h2 className="text-2xl font-bold mb-4 text-center">Appliance Details</h2>
+    <div
+      className="w-full max-w-xs mx-auto p-3 bg-white text-gray-800 shadow-md rounded-lg"
+      key={props.id}
+    >
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold text-center">Appliance Details</h2>
+        <div className="flex space-x-4 items-center">
+          <button className="flex items-center space-x-1 text-blue-600">
+            <FaEdit className="text-xl" />
+          </button>
+          <button
+            className="flex items-center space-x-1 text-red-600"
+            onClick={() => props.onDelete(props.id)}
+          >
+            <FaTrashAlt className="text-xl" />
+          </button>
+        </div>
+      </div>
 
       <div className="p-3 bg-gray-100 rounded-lg shadow border border-gray-300">
         <h3 className="text-xl font-semibold mb-2">
