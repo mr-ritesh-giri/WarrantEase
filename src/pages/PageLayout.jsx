@@ -1,8 +1,10 @@
 import React from "react";
 
-function PageLayout({ children }) {
+function PageLayout({ children, className }) {
   return (
-    <div className="flex flex-col justify-center items-center h-[90vh] w-full bg-gray-200">
+    <div
+      className={`flex flex-col justify-center items-center h-[90vh] w-full bg-gray-200 ${className}`}
+    >
       {children}
     </div>
   );

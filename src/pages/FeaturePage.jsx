@@ -4,7 +4,7 @@ import Feature from "../components/Feature";
 
 function FeaturePage() {
   return (
-    <PageLayout>
+    <PageLayout className={"p-14"}>
       <Feature />
     </PageLayout>
   );

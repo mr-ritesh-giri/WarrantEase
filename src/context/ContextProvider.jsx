@@ -20,6 +20,22 @@ export function WarrantProvider({ children }) {
     ApplianceData();
   }, []);
 
+  const handleAdd = async (newAppliance) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/appliances",
+        newAppliance
+      );
+      setData((prevData) => [response.data, ...prevData]);
+    } catch (error) {
+      console.log("Error adding appliance", error);
+    }
+  };
+
+  // const handleEdit = (id) => {
+  //   setData((prevData) => [ ...prevData,{id: , form}]);
+  // };
+
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/appliances/${id}`);
@@ -31,7 +47,9 @@ export function WarrantProvider({ children }) {
   };
 
   return (
-    <WarrantContext.Provider value={{ data, handleDelete }}>
+    <WarrantContext.Provider
+      value={{ data, handleAdd, handleEdit, handleDelete }}
+    >
       {children}
     </WarrantContext.Provider>
   );

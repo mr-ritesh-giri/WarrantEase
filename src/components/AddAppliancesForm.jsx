@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useWarrant } from "../context/ContextProvider";
+import { useNavigate } from "react-router-dom";
 
 function AddAppliancesForm() {
   const [form, setForm] = useState({
@@ -9,29 +11,35 @@ function AddAppliancesForm() {
     warrantyPeriod: "",
     customerCareNumber: "",
   });
+  const navigate = useNavigate();
+
+  const { handleAdd } = useWarrant();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((values) => ({ ...values, [name]: value }));
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("Appliance Added");
 
-    alert(
-      `
-      Appliance Type: ${form.type}, 
-      Model: ${form.model}, 
-      Make: ${form.make}, 
-      Purchase Date: ${form.purchaseDate}, 
-      Warranty Period: ${form.warrantyPeriod}, 
-      Customer Care: ${form.customerCareNumber}`
-    );
+    try {
+      await handleAdd(form);
+      alert("Appliance added successfully.");
+      navigate("/view-appliances");
+    } catch (error) {
+      alert("Failed to add appliance. Please try again.");
+    }
+    setForm({
+      type: "",
+      model: "",
+      make: "",
+      purchaseDate: "",
+      warrantyPeriod: "",
+      customerCareNumber: "",
+    });
   };
 
-
-  
   return (
     <div className="w-[450px] mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-semibold text-black mb-4">Add Appliance</h2>
