@@ -9,7 +9,9 @@ export function WarrantProvider({ children }) {
   useEffect(() => {
     const ApplianceData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/appliances");
+        const response = await axios.get(
+          "https://warrantease-json-server.onrender.com/appliances"
+        );
         setData(response.data);
       } catch (error) {
         console.log("Error in fetching data", error);
@@ -22,7 +24,7 @@ export function WarrantProvider({ children }) {
   const handleAdd = async (newAppliance) => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/appliances",
+        "https://warrantease-json-server.onrender.com/appliances",
         newAppliance
       );
       setData((prevData) => [response.data, ...prevData]);
@@ -34,7 +36,7 @@ export function WarrantProvider({ children }) {
   const handleEdit = async (id, updatedData) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/appliances/${id}`,
+        `https://warrantease-json-server.onrender.com/appliances/${id}`,
         updatedData
       );
       setData((prevData) => {
@@ -50,7 +52,9 @@ export function WarrantProvider({ children }) {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/appliances/${id}`);
+      await axios.delete(
+        `https://warrantease-json-server.onrender.com/appliances/${id}`
+      );
 
       setData((prevData) => prevData.filter((item) => item.id !== id));
     } catch (error) {
