@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ViewAppliances from "../components/ViewAppliances";
 import { useWarrant } from "../context/ContextProvider";
+import ViewAppliances from "../components/ViewAppliances";
 
 function ViewAppLiancesPage() {
   const [appliance, setAppliance] = useState([]);
@@ -14,7 +14,7 @@ function ViewAppLiancesPage() {
 
   return (
     <div className="flex justify-start items-start min-h-[90vh] bg-gray-200">
-      <div className="flex flex-wrap items-start justify-start m-auto gap-6 p-6 w-full max-w-[1200px]">
+      <div className="flex flex-wrap items-start justify-start m-auto gap-6 py-6 px-2 w-full max-w-[1200px]">
         {appliance && appliance.length > 0 ? (
           appliance.map((applianceData, index) => (
             <ViewAppliances

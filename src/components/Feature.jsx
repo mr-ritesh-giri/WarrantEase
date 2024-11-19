@@ -25,7 +25,7 @@ const features = [
 const Feature = () => {
   return (
     <div className="p-8 max-w-4xl mx-auto space-y-8 bg-white rounded-lg shadow-2xl">
-      <h2 className="text-4xl font-bold text-black text-center">
+      <h2 className="md:text-4xl text-3xl font-bold text-black text-center">
         App Features
       </h2>
       <p className="text-lg text-center text-gray-900">

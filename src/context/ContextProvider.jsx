@@ -28,6 +28,7 @@ export function WarrantProvider({ children }) {
         newAppliance
       );
       setData((prevData) => [response.data, ...prevData]);
+      alert("Appliance Added Successfully.");
     } catch (error) {
       console.log("Error adding appliance", error);
     }
@@ -44,7 +45,7 @@ export function WarrantProvider({ children }) {
           item.id === id ? { ...item, ...updatedData } : item
         );
       });
-      console.log("Appliance updated:", response.data);
+      alert("Appliance Edited Successfully.");
     } catch (error) {
       console.log("Error editing appliance", error);
     }
@@ -57,6 +58,7 @@ export function WarrantProvider({ children }) {
       );
 
       setData((prevData) => prevData.filter((item) => item.id !== id));
+      alert("Appliance Deleted Successfully.");
     } catch (error) {
       console.log("Error deleting appliance", error);
     }

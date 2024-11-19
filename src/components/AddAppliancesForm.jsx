@@ -25,7 +25,6 @@ function AddAppliancesForm() {
 
     try {
       await handleAdd(form);
-      alert("Appliance added successfully.");
       navigate("/view-appliances");
     } catch (error) {
       alert("Failed to add appliance. Please try again.");
@@ -41,7 +40,7 @@ function AddAppliancesForm() {
   };
 
   return (
-    <div className="w-[450px] mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div className="sm:w-[450px] mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-semibold text-black mb-4">Add Appliance</h2>
       <form onSubmit={submitHandler}>
         <div className="mb-4">
