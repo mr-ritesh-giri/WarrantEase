@@ -20,12 +20,11 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `${
                     isActive ? "text-gray-500" : "text-black"
-                  } mr-6 text-xl relative group`
+                  } mr-6 text-xl hover:text-gray-600 relative group`
                 }
                 to={link.to}
               >
                 {link.name}
-                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gray-500 transition-all duration-300 group-hover:w-full"></span>
               </NavLink>
             </li>
           ))}

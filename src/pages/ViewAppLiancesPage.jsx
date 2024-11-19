@@ -13,12 +13,12 @@ function ViewAppLiancesPage() {
   }, [data]);
 
   return (
-    <div className="flex justify-center items-center min-h-[90vh] bg-gray-200">
-      <div className="flex flex-wrap m-auto gap-6 p-6 w-full max-w-[1200px]">
+    <div className="flex justify-start items-start min-h-[90vh] bg-gray-200">
+      <div className="flex flex-wrap items-start justify-start m-auto gap-6 p-6 w-full max-w-[1200px]">
         {appliance && appliance.length > 0 ? (
           appliance.map((applianceData, index) => (
             <ViewAppliances
-              key={applianceData.id}
+              key={index}
               id={applianceData.id}
               name={applianceData.type}
               model={applianceData.model}
@@ -31,7 +31,7 @@ function ViewAppLiancesPage() {
             />
           ))
         ) : (
-          <p className="flex m-auto text-gray-700 text-3xl font-semibold">No data found</p>
+          <p className="text-gray-700 text-3xl font-semibold">No data found</p>
         )}
       </div>
     </div>

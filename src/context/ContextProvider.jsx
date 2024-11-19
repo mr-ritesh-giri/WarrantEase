@@ -10,7 +10,6 @@ export function WarrantProvider({ children }) {
     const ApplianceData = async () => {
       try {
         const response = await axios.get("http://localhost:5000/appliances");
-        console.log(data);
         setData(response.data);
       } catch (error) {
         console.log("Error in fetching data", error);
@@ -32,9 +31,22 @@ export function WarrantProvider({ children }) {
     }
   };
 
-  // const handleEdit = (id) => {
-  //   setData((prevData) => [ ...prevData,{id: , form}]);
-  // };
+  const handleEdit = async (id, updatedData) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/appliances/${id}`,
+        updatedData
+      );
+      setData((prevData) => {
+        return prevData.map((item) =>
+          item.id === id ? { ...item, ...updatedData } : item
+        );
+      });
+      console.log("Appliance updated:", response.data);
+    } catch (error) {
+      console.log("Error editing appliance", error);
+    }
+  };
 
   const handleDelete = async (id) => {
     try {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaEdit, FaTrashAlt, FaTimes } from "react-icons/fa";
 import { useWarrant } from "../context/ContextProvider";
 
@@ -6,8 +6,7 @@ function ViewAppliances(props) {
   const [isApplianceEditable, setIsApplianceEditable] = useState(false);
   const { handleEdit } = useWarrant();
 
-  const [form, setForm] = useState({
-    id: props.id || "",
+  const [editForm, setEditForm] = useState({
     type: props.type || "",
     model: props.model || "",
     make: props.make || "",
@@ -16,9 +15,20 @@ function ViewAppliances(props) {
     customerCareNumber: props.customerCareNumber || "",
   });
 
+  useEffect(() => {
+    setEditForm({
+      type: props.type || "",
+      model: props.model || "",
+      make: props.make || "",
+      purchaseDate: props.purchaseDate || "",
+      warrantyPeriod: props.warrantyPeriod || "",
+      customerCareNumber: props.customerCareNumber || "",
+    });
+  }, [props]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm((prevForm) => ({
+    setEditForm((prevForm) => ({
       ...prevForm,
       [name]: value,
     }));
@@ -26,8 +36,7 @@ function ViewAppliances(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    handleEdit(form.id, form);
+    handleEdit(props.id, editForm); 
     setIsApplianceEditable(false);
   };
 
@@ -40,9 +49,7 @@ function ViewAppliances(props) {
               <h2 className="text-2xl font-semibold text-black text-center">
                 Edit Appliance
               </h2>
-              <div
-                onClick={() => setIsApplianceEditable((prev) => prev != prev)}
-              >
+              <div onClick={() => setIsApplianceEditable(false)}>
                 <FaTimes className="text-red-600 text-3xl" />
               </div>
             </div>
@@ -58,7 +65,7 @@ function ViewAppliances(props) {
                   id="type"
                   name="type"
                   type="text"
-                  value={form.type}
+                  value={editForm.type}
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-lg text-black"
                   placeholder="e.g., Air Conditioner"
@@ -76,7 +83,7 @@ function ViewAppliances(props) {
                   id="model"
                   name="model"
                   type="text"
-                  value={form.model}
+                  value={editForm.model}
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-lg text-black"
                   placeholder="e.g., ABC123"
@@ -94,7 +101,7 @@ function ViewAppliances(props) {
                   id="make"
                   name="make"
                   type="text"
-                  value={form.make}
+                  value={editForm.make}
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-lg text-black"
                   placeholder="e.g., Bluestar"
@@ -112,7 +119,7 @@ function ViewAppliances(props) {
                   id="purchaseDate"
                   name="purchaseDate"
                   type="date"
-                  value={form.purchaseDate}
+                  value={editForm.purchaseDate}
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-lg text-black"
                   required
@@ -130,7 +137,7 @@ function ViewAppliances(props) {
                   id="warrantyPeriod"
                   name="warrantyPeriod"
                   type="number"
-                  value={form.warrantyPeriod}
+                  value={editForm.warrantyPeriod}
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-lg text-black"
                   placeholder="e.g., 2"
@@ -148,7 +155,7 @@ function ViewAppliances(props) {
                   id="customerCareNumber"
                   name="customerCareNumber"
                   type="text"
-                  value={form.customerCareNumber}
+                  value={editForm.customerCareNumber}
                   onChange={handleChange}
                   className="w-full p-3 border border-gray-300 rounded-lg text-black"
                   placeholder="e.g., 1234567890"
