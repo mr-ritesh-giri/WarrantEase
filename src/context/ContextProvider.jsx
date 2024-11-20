@@ -36,7 +36,7 @@ export function WarrantProvider({ children }) {
 
   const handleEdit = async (id, updatedData) => {
     try {
-      const response = await axios.put(
+      await axios.put(
         `https://warrantease-json-server.onrender.com/appliances/${id}`,
         updatedData
       );

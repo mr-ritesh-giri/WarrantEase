@@ -11,6 +11,7 @@ function AddAppliancesForm() {
     warrantyPeriod: "",
     customerCareNumber: "",
   });
+
   const navigate = useNavigate();
 
   const { handleAdd } = useWarrant();
@@ -22,7 +23,7 @@ function AddAppliancesForm() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    
     try {
       await handleAdd(form);
       navigate("/view-appliances");

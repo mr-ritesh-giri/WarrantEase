@@ -31,7 +31,9 @@ function ViewAppLiancesPage() {
             />
           ))
         ) : (
-          <p className="text-gray-700 text-3xl font-semibold">No data found</p>
+          <p className="m-auto text-gray-700 text-3xl font-semibold">
+            No data found
+          </p>
         )}
       </div>
     </div>
